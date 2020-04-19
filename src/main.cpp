@@ -1,11 +1,11 @@
-#include "matplotlibcpp.h"
-
-namespace plt = matplotlibcpp;
+#include "world.h"
 
 int main(){
 
-    plt::plot({1,3,2,4});
-    plt::show();
+    World world;
+
+    world.setLines();
+    world.plot();
 
     return 0;
 }
