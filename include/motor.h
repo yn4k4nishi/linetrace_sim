@@ -71,4 +71,8 @@ public:
     double getSpeed(){
         return speed;
     }
+
+    double getCurrent(){
+        return current;
+    }
 };
