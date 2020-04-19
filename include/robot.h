@@ -1,6 +1,9 @@
 #include <vector>
 #include <cmath>
+#include "matplotlibcpp.h"
 #include "motor.h"
+
+namespace plt = matplotlibcpp;
 
 struct State{
     double x;
@@ -60,5 +63,18 @@ public:
 
     std::vector<double> getSensorData(){
         return sensor_value;
+    }
+
+    void plot(){
+        std::vector<double> x(6), y(6);
+        for(int i = 0; i < 5; i++){
+            x.at(i) = robot_state.x + width * cos(robot_state.theta + i * M_PI / 2.0) / 2.0;
+            y.at(i) = robot_state.y + width * sin(robot_state.theta + i * M_PI / 2.0) / 2.0;
+        }
+        x.at(5) = robot_state.x;
+        y.at(5) = robot_state.y;
+
+        plt::plot(x, y);
+        return;
     }
 };
