@@ -8,14 +8,13 @@ public:
     Motor(){
     }
 
-private:
+public:
     void update(){
         speed = duty;
     }
 
-public:
     void setDuty(double duty){
-        duty = this->duty;
+        this->duty = duty;
         return;
     }
     double getSpeed(){
