@@ -14,7 +14,7 @@ public:
     }
 
     void setDuty(double duty){
-        duty = this->duty;
+        this->duty = duty;
         return;
     }
     double getSpeed(){
