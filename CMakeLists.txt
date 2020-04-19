@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 project(linetrace_sim)
 
 find_package(PythonLibs 2.7)
+find_package(Threads REQUIRED)
 
 include_directories(
         include
@@ -21,4 +22,4 @@ add_executable(${PROJECT_NAME}
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${PYTHON_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${PYTHON_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${PYTHON_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})

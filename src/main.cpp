@@ -1,17 +1,31 @@
 #include "world.h"
+#include "timer.h"
+
+void say_hello(){
+    std::cout << "hello" << std::endl;
+}
 
 int main(){
 
-    Robot robot;
+    Timer timer;
+    timer.bind(say_hello);
 
-    World world;
-    world.setLines();
-    world.setRobot(robot);
+    timer.start();
 
-    while (!world.isFinished()){
-//        world.update();
-        world.plot();
+    while (true){
+
     }
+
+//    Robot robot;
+//
+//    World world;
+//    world.setLines();
+//    world.setRobot(robot);
+//
+//    while (!world.isFinished()){
+////        world.update();
+//        world.plot();
+//    }
 
     return 0;
 }
