@@ -18,8 +18,10 @@ class World{
     Robot *robot;
 
     // プロット用のvector
-    std::vector<double> course_x,course_y;
     std::vector<double> trajectory_x,trajectory_y;
+
+    // パラメータ
+    const double GOAL_TOLERANCE = 0.01;// [m]
 
 public:
     World(){}
@@ -42,18 +44,6 @@ public:
         this->lines.push_back(l1);
         this->lines.push_back(l2);
         this->lines.push_back(l3);
-
-        //// plot用
-        this->course_x.clear();
-        this->course_y.clear();
-
-        this->course_x.push_back(this->lines.front().start.x());
-        this->course_y.push_back(this->lines.front().start.y());
-
-        for (auto &l : this->lines) {
-            this->course_x.push_back(l.end.x());
-            this->course_y.push_back(l.end.y());
-        }
     }
 
     void setRobot(Robot &robot){
@@ -61,14 +51,36 @@ public:
     }
 
     void update(){
-        this->robot->update();
         this->trajectory_x.push_back(this->robot->getState().x);
         this->trajectory_y.push_back(this->robot->getState().y);
+
+        this->robot->update();
     }
 
     void plot(){
-        plt::plot(this->course_x, this->course_y);
-        plt::show();
+        plt::clf();
+
+        for (auto &l : this->lines) {
+            plt::plot(
+                    std::vector<double>{l.start.x(),l.end.x()},
+                    std::vector<double>{l.start.y(),l.end.y()},
+                    {{"color","b"}}
+                    );
+        }
+        plt::plot(this->trajectory_x,this->trajectory_y);
+
+        plt::pause(0.1);
+    }
+
+    bool isFinished(){
+        // todo : 実装
+        Eigen::Vector2d pos {this->robot->getState().x,this->robot->getState().y};
+
+//        if((this->lines.end()->end - pos).norm() < GOAL_TOLERANCE){
+//            return true;
+//        }
+
+        return false;
     }
 };
 

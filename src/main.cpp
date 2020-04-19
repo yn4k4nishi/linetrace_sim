@@ -2,10 +2,16 @@
 
 int main(){
 
-    World world;
+    Robot robot;
 
+    World world;
     world.setLines();
-    world.plot();
+    world.setRobot(robot);
+
+    while (!world.isFinished()){
+//        world.update();
+        world.plot();
+    }
 
     return 0;
 }
