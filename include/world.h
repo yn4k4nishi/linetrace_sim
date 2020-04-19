@@ -10,6 +10,7 @@ public:
     World(){}
     ~World(){}
 
+    void setLines(){}
     void setRobot(){}
     void update(){}
     void plot(){}
