@@ -12,6 +12,10 @@ include_directories(
 add_executable(${PROJECT_NAME}
         src/main.cpp
         include/matplotlibcpp.h
+        include/robot.h
+        include/motor.h
+        include/timer.h
+        include/world.h
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${PYTHON_INCLUDE_DIRS})
