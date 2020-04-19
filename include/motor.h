@@ -2,13 +2,20 @@
 
 class Motor{
 private:
+    //巻線抵抗
     const double resistance = 0.299;
+    //インダクタンス
     const double inductance = 8.2e-5;
+    //トルク定数=逆起電力係数
     const double torque_constant = 3.02e-2;
+    //慣性モーメント
     const double inertia = 1.42e-5;
+    //動粘性系数
     const double viscous_friction_constant = 3.04e-3;
 
+    //電源電圧
     const double voltage = 24.0;
+    //車輪半径
     const double tire_radius = 0.05;
 
 private:
