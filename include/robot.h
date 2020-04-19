@@ -10,20 +10,20 @@ struct State{
 
 class Robot{
 private:
+    const int sensor_num = 4;
+    const double width = 0.1;
+
+private:
     double interval;
     State robot_state;
     Motor motor_r, motor_l;
-    int sensor_num;
     std::vector<double> sensor_value;
-    double width;
 
 public:
-    Robot(double interval = 0.01, State robot_state = {0.0, 0.0, 0.0}, int sensor_num = 4, double width = 0.1) :
+    Robot(double interval = 0.01, State robot_state = {0.0, 0.0, 0.0}) :
             interval(interval),
             robot_state(robot_state),
-            sensor_num(sensor_num),
-            sensor_value(sensor_num),
-            width(width){
+            sensor_value(sensor_num){
     }
 
 private:
