@@ -12,9 +12,7 @@ int main(){
 
     timer.start();
 
-    while (true){
-
-    }
+    while (true){}
 
 //    Robot robot;
 //
