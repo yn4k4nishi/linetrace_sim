@@ -1,4 +1,4 @@
-# linetarce_sim
+# linetrace_sim
 ライントレースのシュミレータ
 
 ## 環境
