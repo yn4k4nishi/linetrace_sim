@@ -31,13 +31,13 @@ public:
         // todo コースのファイル読み込み
         Line l1,l2,l3;
         l1.start << 0,0;
-        l1.end << 2,1;
+        l1.end << 0.4,0.2;
 
         l2.start = l1.end;
-        l2.end << 2,4;
+        l2.end << 0.1,0.8;
 
         l3.start = l2.end;
-        l3.end << 5,5;
+        l3.end << 1,1;
 
         this->lines.clear();
 
@@ -68,7 +68,10 @@ public:
                     {{"color","b"}}
                     );
         }
+
         plt::plot(this->trajectory_x,this->trajectory_y);
+
+        this->robot->plot();
 
         plt::pause(0.1);
     }
