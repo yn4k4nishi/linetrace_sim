@@ -12,6 +12,8 @@ $ make
 $ ./linetrace_sim
 ```
 
+clionの場合は緑色の三角ボタンを押せばいいはず
+
 ## 依存関係
 - cmake
 - [matplotlibcpp](https://github.com/lava/matplotlib-cpp)
