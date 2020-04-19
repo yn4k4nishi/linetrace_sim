@@ -55,7 +55,7 @@ public:
         double k4_w = dwdt(current + interval * k3_i, angular_velocity + interval * k3_w);
         current += interval * (k1_i + 2 * k2_i + 2 * k3_i + k4_i) / 6;
         angular_velocity += interval * (k1_w + 2 * k2_w + 2 * k3_w + k4_w) / 6;
-        speed = 2.0 * M_PI * angular_velocity * tire_radius;
+        speed = angular_velocity * tire_radius;
         return;
     }
 
