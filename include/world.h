@@ -59,6 +59,7 @@ public:
 
     void plot(){
         plt::clf();
+        plt::axis("equal");
 
         for (auto &l : this->lines) {
             plt::plot(
