@@ -73,6 +73,9 @@ public:
 
         this->robot->plot();
 
+        plt::xlim(-0.2,1.2);
+        plt::ylim(-0.2,1.2);
+
         plt::pause(0.1);
     }
 
