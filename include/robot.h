@@ -1,5 +1,5 @@
 #include <vector>
-//#include "motor.h"
+#include "motor.h"
 
 struct State{
     double x;
@@ -10,7 +10,7 @@ struct State{
 class Robot{
 private:
     State robot_state;
-    //Motor motor();
+    Motor motor_r, motor_l;
     int sensor_num;
     std::vector<double> sensor_value;
 
@@ -23,6 +23,8 @@ public:
 
 private:
     void update_state(){
+        motor_r.getSpeed();
+        motor_l.getSpeed();
         return;
     }
 
@@ -33,7 +35,8 @@ public:
     }
 
     void setDuty(double right, double left){
-        //motor.setDuty(right, left);
+        motor_r.setDuty(right);
+        motor_l.setDuty(left);
         return;
     }
 
