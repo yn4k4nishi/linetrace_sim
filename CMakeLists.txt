@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.8)
 project(linetrace_sim)
 
-find_package(Python2 COMPONENTS Development NumPy)
+find_package(PythonLibs 2.7)
 
 include_directories(
         include
         /usr/include
+        /usr/include/x86_64-linux-gnu
 )
 
 add_executable(${PROJECT_NAME}
@@ -13,5 +14,5 @@ add_executable(${PROJECT_NAME}
         include/matplotlibcpp.h
         )
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${Python2_INCLUDE_DIRS} ${Python2_NumPy_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} Python2::Python Python2::NumPy)
+target_include_directories(${PROJECT_NAME} PRIVATE ${PYTHON_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${PYTHON_LIBRARIES})
