@@ -26,7 +26,9 @@ public:
     Robot(double interval = 0.01, State robot_state = {0.0, 0.0, 0.0}) :
             interval(interval),
             robot_state(robot_state),
-            sensor_value(sensor_num){
+            sensor_value(sensor_num),
+            motor_r(interval),
+            motor_l(interval){
     }
 
 private:
