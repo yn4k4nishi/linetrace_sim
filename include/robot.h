@@ -49,8 +49,20 @@ private:
     }
 
     void update_sensor(){
+        if(sensor_num < 2){
+            return;
+        }
+
+        Position origin;
+        origin.x = state.x + sensor_bar_pos.x * cos(state.theta) - sensor_bar_pos.y / 2 * sin(state.theta);
+        origin.y = state.y + sensor_bar_pos.x * sin(state.theta) + sensor_bar_pos.y / 2 * cos(state.theta);
+
         for(int i = 0; i < sensor_num; i++){
-            sensor[i].update();
+            Position sensor_pos;
+            sensor_pos.x = origin.x + sensor_bar_pos.y * i / (sensor_num - 1) * sin(state.theta);
+            sensor_pos.y = origin.y - sensor_bar_pos.y * i / (sensor_num - 1) * cos(state.theta);
+            sensor.at(i).setPosition(sensor_pos);
+            sensor.at(i).update();
         }
         return;
     }
