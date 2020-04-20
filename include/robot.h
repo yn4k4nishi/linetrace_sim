@@ -6,6 +6,7 @@
 #include <string>
 #include "matplotlibcpp.h"
 #include "motor.h"
+#include "sensor.h"
 #include "structs.h"
 
 namespace plt = matplotlibcpp;
@@ -22,13 +23,13 @@ private:
     double interval;
     State state;
     Motor motor_r, motor_l;
-    std::vector<double> sensor_value;
+    std::vector<Sensor> sensor;
 
 public:
     Robot(double interval = 0.01, State initial_state = {0.0, 0.0, 0.0}) :
             interval(interval),
             state(initial_state),
-            sensor_value(sensor_num),
+            sensor(sensor_num),
             motor_r(interval),
             motor_l(interval){
     }
@@ -44,6 +45,13 @@ private:
         state.x += v * interval * cos(state.theta + omega * interval / 2.0);
         state.y += v * interval * sin(state.theta + omega * interval / 2.0);
         state.theta += omega * interval;
+        return;
+    }
+
+    void update_sensor(){
+        for(int i = 0; i < sensor_num; i++){
+            sensor[i].update();
+        }
         return;
     }
 
@@ -73,6 +81,7 @@ public:
     void update(){
         motor_r.update();
         motor_l.update();
+        update_sensor();
         update_state();
         return;
     }
@@ -88,6 +97,10 @@ public:
     }
 
     std::vector<double> getSensorData(){
+        std::vector<double> sensor_value(sensor_num);
+        for(int i = 0; i < sensor_num; i++){
+            sensor_value.at(i) = sensor.at(i).getValue();
+        }
         return sensor_value;
     }
 
