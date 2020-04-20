@@ -2,14 +2,9 @@
 #include <cmath>
 #include "matplotlibcpp.h"
 #include "motor.h"
+#include "structs.h"
 
 namespace plt = matplotlibcpp;
-
-struct State{
-    double x;
-    double y;
-    double theta;
-};
 
 class Robot{
 private:
