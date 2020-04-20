@@ -15,6 +15,8 @@ private:
 
     //電源電圧
     const double voltage = 2.4;
+    //ギア比
+    const double gear_ratio = 114.7;
     //車輪半径
     const double tire_radius = 0.05;
 
@@ -23,13 +25,11 @@ private:
     double duty;
     double current;
     double angular_velocity;
-    double speed;
 
 public:
     Motor(double interval):
             interval(interval),
             duty(0.0),
-            speed(0.0),
             angular_velocity(0.0),
             current(0.0){
     }
@@ -58,8 +58,6 @@ public:
             current += dt * (k1_i + 2 * k2_i + 2 * k3_i + k4_i) / 6;
             angular_velocity += dt * (k1_w + 2 * k2_w + 2 * k3_w + k4_w) / 6;
         }
-
-        speed = angular_velocity * tire_radius;
         return;
     }
 
@@ -69,7 +67,7 @@ public:
     }
 
     double getSpeed(){
-        return speed;
+        return angular_velocity / gear_ratio * tire_radius;
     }
 
     double getCurrent(){
