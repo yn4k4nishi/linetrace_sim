@@ -10,6 +10,8 @@ class Robot{
 private:
     const int sensor_num = 4;
     const double width = 0.1;
+    //センサバーの位置(中心よりx前方，長さはy)
+    const Position sensor_bar_pos = {0.05, 0.06};
 
 private:
     double interval;
@@ -40,6 +42,28 @@ private:
         return;
     }
 
+    void plot_machine(){
+        std::vector<double> x(6), y(6);
+        for(int i = 0; i < 5; i++){
+            x.at(i) = state.x + width * cos(state.theta + i * M_PI / 2.0) / 2.0;
+            y.at(i) = state.y + width * sin(state.theta + i * M_PI / 2.0) / 2.0;
+        }
+        x.at(5) = state.x;
+        y.at(5) = state.y;
+        plt::plot(x, y);
+        return;
+    }
+
+    void plot_sensor(){
+        std::vector<double> x(2), y(2);
+        x.at(0) = state.x + sensor_bar_pos.x * cos(state.theta) - sensor_bar_pos.y / 2 * sin(state.theta);
+        y.at(0) = state.y + sensor_bar_pos.x * sin(state.theta) + sensor_bar_pos.y / 2 * cos(state.theta);
+        x.at(1) = state.x + sensor_bar_pos.x * cos(state.theta) + sensor_bar_pos.y / 2 * sin(state.theta);
+        y.at(1) = state.y + sensor_bar_pos.x * sin(state.theta) - sensor_bar_pos.y / 2 * cos(state.theta);
+        plt::plot(x, y);
+        return;
+    }
+
 public:
     void update(){
         motor_r.update();
@@ -63,15 +87,8 @@ public:
     }
 
     void plot(){
-        std::vector<double> x(6), y(6);
-        for(int i = 0; i < 5; i++){
-            x.at(i) = state.x + width * cos(state.theta + i * M_PI / 2.0) / 2.0;
-            y.at(i) = state.y + width * sin(state.theta + i * M_PI / 2.0) / 2.0;
-        }
-        x.at(5) = state.x;
-        y.at(5) = state.y;
-
-        plt::plot(x, y);
+        plot_machine();
+        plot_sensor();
         return;
     }
 };
