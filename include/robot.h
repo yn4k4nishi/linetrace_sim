@@ -8,6 +8,7 @@
 #include "motor.h"
 #include "sensor.h"
 #include "structs.h"
+#include "line.h"
 
 namespace plt = matplotlibcpp;
 
@@ -95,6 +96,13 @@ public:
         motor_l.update();
         update_sensor();
         update_state();
+        return;
+    }
+
+    void setLines(std::vector<Line> lines){
+        for(int i = 0; i < sensor_num; i++){
+            sensor.at(i).setLines(lines);
+        }
         return;
     }
 
