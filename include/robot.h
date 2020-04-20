@@ -1,5 +1,6 @@
 #include <vector>
 #include <cmath>
+#include <string>
 #include "matplotlibcpp.h"
 #include "motor.h"
 #include "structs.h"
@@ -8,6 +9,7 @@ namespace plt = matplotlibcpp;
 
 class Robot{
 private:
+    const std::string color = "black";
     const int sensor_num = 4;
     const double width = 0.1;
     //センサバーの位置(中心よりx前方，長さはy)
@@ -50,7 +52,7 @@ private:
         }
         x.at(5) = state.x;
         y.at(5) = state.y;
-        plt::plot(x, y);
+        plt::plot(x, y, color);
         return;
     }
 
@@ -60,7 +62,7 @@ private:
         y.at(0) = state.y + sensor_bar_pos.x * sin(state.theta) + sensor_bar_pos.y / 2 * cos(state.theta);
         x.at(1) = state.x + sensor_bar_pos.x * cos(state.theta) + sensor_bar_pos.y / 2 * sin(state.theta);
         y.at(1) = state.y + sensor_bar_pos.x * sin(state.theta) - sensor_bar_pos.y / 2 * cos(state.theta);
-        plt::plot(x, y);
+        plt::plot(x, y, color);
         return;
     }
 
