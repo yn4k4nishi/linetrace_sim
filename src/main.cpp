@@ -1,11 +1,19 @@
-#include "matplotlibcpp.h"
-
-namespace plt = matplotlibcpp;
+#include "world.h"
 
 int main(){
 
-    plt::plot({1,3,2,4});
-    plt::show();
+    Robot robot;
+
+    robot.setDuty(1,1);
+
+    World world;
+    world.setLines();
+    world.setRobot(robot);
+
+    while (!world.isFinished()){
+        world.update();
+        world.plot();
+    }
 
     return 0;
 }
