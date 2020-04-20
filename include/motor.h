@@ -1,3 +1,6 @@
+#ifndef LINETRACE_SIM_MOTOR_H
+#define LINETRACE_SIM_MOTOR_H
+
 #include <cmath>
 
 class Motor{
@@ -74,3 +77,5 @@ public:
         return current;
     }
 };
+
+#endif

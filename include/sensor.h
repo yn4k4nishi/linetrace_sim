@@ -1,3 +1,6 @@
+#ifndef LINETRACE_SIM_SENSOR_H
+#define LINETRACE_SIM_SENSOR_H
+
 #include "structs.h"
 
 class Sensor{
@@ -25,3 +28,5 @@ public:
         return value;
     }
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef LINETRACE_SIM_ROBOT_H
+#define LINETRACE_SIM_ROBOT_H
+
 #include <vector>
 #include <cmath>
 #include <string>
@@ -94,3 +97,5 @@ public:
         return;
     }
 };
+
+#endif
