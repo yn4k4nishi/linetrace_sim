@@ -11,8 +11,11 @@ struct State{
     double theta;
 };
 
+class World;
+
 class Robot{
 private:
+    friend class World;
     const int sensor_num = 4;
     const double width = 0.1;
 
@@ -55,10 +58,6 @@ public:
         motor_r.setDuty(right);
         motor_l.setDuty(left);
         return;
-    }
-
-    State getState(){
-        return robot_state;
     }
 
     std::vector<double> getSensorData(){

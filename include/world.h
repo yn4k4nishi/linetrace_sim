@@ -48,11 +48,12 @@ public:
 
     void setRobot(Robot &robot){
         this->robot = &robot;
+
     }
 
     void update(){
-        this->trajectory_x.push_back(this->robot->getState().x);
-        this->trajectory_y.push_back(this->robot->getState().y);
+        this->trajectory_x.push_back(this->getRobotState(robot).x);
+        this->trajectory_y.push_back(this->getRobotState(robot).y);
 
         this->robot->update();
     }
@@ -78,13 +79,18 @@ public:
 
     bool isFinished(){
         // todo : 実装
-        Eigen::Vector2d pos {this->robot->getState().x,this->robot->getState().y};
+        Eigen::Vector2d pos {this->getRobotState(robot).x, this->getRobotState(robot).y};
 
 //        if((this->lines.end()->end - pos).norm() < GOAL_TOLERANCE){
 //            return true;
 //        }
 
         return false;
+    }
+
+private:
+    State getRobotState(Robot *robot) {
+        return robot->robot_state;
     }
 };
 
