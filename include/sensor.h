@@ -5,6 +5,12 @@
 
 class Sensor{
 private:
+    const double line_width = 0.019;
+    const double visible_radius = 0.015;
+    const int r_num = 10;
+    const int theta_num = 20;
+    
+private:
     Position pos;
     double value;
 
