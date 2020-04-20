@@ -41,7 +41,11 @@ private:
     }
 
     void updateValue(){
+        int number_of_on_line = 0;
+
         for(int i = 0; i < r_num * theta_num; i++){
+            bool is_on_line = false;
+
             for(int j = 0; j < lines.size(); j++){
                 Eigen::Vector2d a, b;
                 //startから観測点のベクトル
@@ -60,8 +64,14 @@ private:
                     c << observation_points.at(i).x - lines.at(j).end.x(), observation_points.at(i).y - lines.at(j).end.y();
                     distance = c.norm();
                 }
+
+                if(distance < line_width / 2){
+                    number_of_on_line++;
+                    break;
+                }
             }
         }
+        value = (double)number_of_on_line / (r_num * theta_num);
         return;
     }
 
