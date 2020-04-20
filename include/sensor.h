@@ -2,6 +2,7 @@
 #define LINETRACE_SIM_SENSOR_H
 
 #include <vector>
+#include <Eigen/Core>
 #include "structs.h"
 #include "line.h"
 
@@ -39,9 +40,35 @@ private:
         return;
     }
 
+    void updateValue(){
+        for(int i = 0; i < r_num * theta_num; i++){
+            for(int j = 0; j < lines.size(); j++){
+                Eigen::Vector2d a, b;
+                //startから観測点のベクトル
+                a << observation_points.at(i).x - lines.at(j).start.x(), observation_points.at(i).y - lines.at(j).start.y();
+                //startからendのベクトル
+                b << lines.at(j).end.x() - lines.at(j).start.x(), lines.at(j).end.y() - lines.at(j).start.y();
+
+                double distance;
+                if(a.dot(b) < 0){
+                    distance = a.norm();
+                }else if(a.dot(b) / b.norm() < b.norm()){
+                    distance = abs(a.x() * b.y() - a.y() * b.x()) / b.norm();
+                }else{
+                    Eigen::Vector2d c;
+                    //endから観測点のベクトル
+                    c << observation_points.at(i).x - lines.at(j).end.x(), observation_points.at(i).y - lines.at(j).end.y();
+                    distance = c.norm();
+                }
+            }
+        }
+        return;
+    }
+
 public:
     void update(){
             updateObservationPoint();
+            updateValue();
         return;
     }
 
