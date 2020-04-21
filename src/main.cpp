@@ -4,7 +4,7 @@ int main(){
 
     Robot robot;
 
-    robot.setDuty(1,1);
+    robot.setDuty(1,0.5);
 
     World world;
     world.setLines();
