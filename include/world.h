@@ -78,12 +78,11 @@ public:
     }
 
     bool isFinished(){
-        // todo : 実装
         Eigen::Vector2d pos {this->getRobotState(robot).x, this->getRobotState(robot).y};
 
-//        if((this->lines.end()->end - pos).norm() < GOAL_TOLERANCE){
-//            return true;
-//        }
+        if((this->lines.back().end - pos).norm() < GOAL_TOLERANCE){
+            return true;
+        }
 
         return false;
     }
