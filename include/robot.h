@@ -111,9 +111,9 @@ public:
         return;
     }
 
-    void setDuty(double right, double left){
-        motor_r.setDuty(right);
+    void setDuty(double left, double right){
         motor_l.setDuty(left);
+        motor_r.setDuty(right);
         return;
     }
 
