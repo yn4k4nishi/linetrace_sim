@@ -77,6 +77,7 @@ public:
         plt::plot(this->trajectory_x,this->trajectory_y);
 
         this->robot->plot();
+        plotGoalFlag();
 
         plt::text(-0.25, 1.1, std::to_string(time) + "[s]");
 
@@ -99,6 +100,19 @@ public:
 private:
     State getRobotState(Robot *robot) {
         return robot->state;
+    }
+
+    void plotGoalFlag(){
+
+        plt::fill<double>(
+                {this->lines.back().end.x(), this->lines.back().end.x() + 0.07, this->lines.back().end.x() + 0.07,this->lines.back().end.x()},
+                {this->lines.back().end.y() + 0.05, this->lines.back().end.y() + 0.05, this->lines.back().end.y() + 0.1,this->lines.back().end.y() + 0.1},
+                {}
+        );
+
+        plt::plot({this->lines.back().end.x(),this->lines.back().end.x()},
+                  {this->lines.back().end.y(),this->lines.back().end.y() + 0.1},
+                  {{"color","k"}});
     }
 };
 
