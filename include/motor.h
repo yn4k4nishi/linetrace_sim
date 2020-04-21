@@ -65,6 +65,11 @@ public:
     }
 
     void setDuty(double duty){
+        if(duty < -1.0){
+            duty = -1.0;
+        }else if(duty > 1.0){
+            duty = 1.0;
+        }
         this->duty = duty;
         return;
     }
