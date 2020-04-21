@@ -25,9 +25,9 @@ public:
         std::cout << sensor_data[3] << std::endl;
 
         if(sensor_data[0] > 0){
-            robot->setDuty(0.5,0);
-        } else if(sensor_data[3] > 0){
             robot->setDuty(0,0.5);
+        } else if(sensor_data[3] > 0){
+            robot->setDuty(0.5,0);
         } else {
             robot->setDuty(0.5,0.5);
         }

@@ -38,7 +38,7 @@ public:
         l1.end << 0.4,0.2;
 
         l2.start = l1.end;
-        l2.end << 0.1,0.8;
+        l2.end << 0.5,0.8;
 
         l3.start = l2.end;
         l3.end << 1,1;
