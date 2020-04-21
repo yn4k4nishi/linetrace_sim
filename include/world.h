@@ -77,7 +77,7 @@ public:
         plt::xlim(-0.2,1.2);
         plt::ylim(-0.2,1.2);
 
-        plt::pause(0.1);
+        plt::pause(0.01);
     }
 
     bool isFinished(){
@@ -93,7 +93,7 @@ public:
 
 private:
     State getRobotState(Robot *robot) {
-        return robot->robot_state;
+        return robot->state;
     }
 };
 

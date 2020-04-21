@@ -12,8 +12,12 @@
 
 namespace plt = matplotlibcpp;
 
+class World;
+
 class Robot{
 private:
+    friend class World;
+
     const std::string color = "black";
 
     const int sensor_num = 4;
