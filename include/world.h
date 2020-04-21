@@ -48,7 +48,7 @@ public:
 
     void setRobot(Robot &robot){
         this->robot = &robot;
-
+        this->robot->setLines(this->lines);
     }
 
     void update(){
