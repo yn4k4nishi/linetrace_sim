@@ -57,5 +57,7 @@ int main(){
         world.plot();
     }
 
+    plt::show();
+
     return 0;
 }

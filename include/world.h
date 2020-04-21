@@ -70,7 +70,7 @@ public:
             plt::plot(
                     std::vector<double>{l.start.x(),l.end.x()},
                     std::vector<double>{l.start.y(),l.end.y()},
-                    {{"color","b"}}
+                    {{"color","orange"}}
                     );
         }
 
