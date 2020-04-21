@@ -6,6 +6,10 @@
 
 class NoisedMotor : public Motor{
 private:
+    const double noise_dev = 0.4;
+    const double bias_dev = 0.2;
+    
+private:
     std::random_device seed;
     std::default_random_engine engine;
     std::normal_distribution<> noise_dist, bias_dist;
@@ -15,8 +19,8 @@ public:
     NoisedMotor(double interval):
             Motor(interval),
             engine(seed()),
-            noise_dist(1.0, 0.4),
-            bias_dist(1.0, 0.2),
+            noise_dist(1.0, noise_dev),
+            bias_dist(1.0, bias_dev),
             bias(bias_dist(engine)){
     }
 
