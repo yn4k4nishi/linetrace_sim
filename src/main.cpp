@@ -4,6 +4,7 @@ int main(){
 
     Robot robot;
 
+
     robot.setDuty(0.2,0.1);
 
     World world;
