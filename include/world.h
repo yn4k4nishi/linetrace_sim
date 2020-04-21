@@ -78,7 +78,7 @@ public:
 
         this->robot->plot();
 
-        plt::text(-0.25, 1.1, std::to_string(time));
+        plt::text(-0.25, 1.1, std::to_string(time) + "[s]");
 
         plt::xlim(-0.2,1.2);
         plt::ylim(-0.2,1.2);
