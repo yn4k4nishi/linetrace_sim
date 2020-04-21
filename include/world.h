@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include "line.h"
 #include "matplotlibcpp.h"
 #include "robot.h"
@@ -23,8 +24,11 @@ class World{
     // パラメータ
     const double GOAL_TOLERANCE = 0.01;// [m]
 
+    double time;
+
 public:
-    World(){}
+    World():
+            time(0.0){}
     ~World(){}
 
     void setLines(){
@@ -54,7 +58,7 @@ public:
     void update(){
         this->trajectory_x.push_back(this->getRobotState(robot).x);
         this->trajectory_y.push_back(this->getRobotState(robot).y);
-
+        this->time += 0.01;
         this->robot->update();
     }
 
@@ -73,6 +77,8 @@ public:
         plt::plot(this->trajectory_x,this->trajectory_y);
 
         this->robot->plot();
+
+        plt::text(-0.25, 1.1, std::to_string(time));
 
         plt::xlim(-0.2,1.2);
         plt::ylim(-0.2,1.2);
