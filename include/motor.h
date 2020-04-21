@@ -19,7 +19,7 @@ private:
     //電源電圧
     const double voltage = 2.4;
     //ギア比
-    const double gear_ratio = 114.7;
+    const double gear_ratio = 12.7;
     //車輪半径
     const double tire_radius = 0.05;
 
