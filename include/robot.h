@@ -5,7 +5,7 @@
 #include <cmath>
 #include <string>
 #include "matplotlibcpp.h"
-#include "motor.h"
+#include "noised_motor.h"
 #include "sensor.h"
 #include "structs.h"
 #include "line.h"
@@ -28,7 +28,7 @@ private:
 private:
     double interval;
     State state;
-    Motor motor_r, motor_l;
+    NoisedMotor motor_r, motor_l;
     std::vector<Sensor> sensor;
 
 public:
