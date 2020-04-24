@@ -20,6 +20,7 @@ class World{
 
     // プロット用のvector
     std::vector<double> trajectory_x,trajectory_y;
+    std::vector<double> goal_circ_x,goal_circ_y;
 
     double time; //[s]
     double interval = 0.01; //[s]
@@ -52,6 +53,19 @@ public:
         this->lines.push_back(l1);
         this->lines.push_back(l2);
         this->lines.push_back(l3);
+
+        //ゴール判定のプロット用
+        goal_circ_x.resize(50);
+        goal_circ_y.resize(50);
+
+        int n = 0;
+        std::generate(goal_circ_x.begin(),goal_circ_x.end(),
+                      [&](){ n++; return GOAL_TOLERANCE * cos((float)n * 2.0 * M_PI / ((float)goal_circ_x.size() -1))
+                                         + lines.back().end.x();});
+        n = 0;
+        std::generate(goal_circ_y.begin(),goal_circ_y.end(),
+                      [&](){ n++; return GOAL_TOLERANCE * sin((float)n * 2.0 * M_PI / ((float)goal_circ_y.size() -1))
+                                         + lines.back().end.y();});
     }
 
     void setRobot(Robot &robot){
@@ -134,7 +148,10 @@ private:
     }
 
     void plotGoalFlag(){
+        //ゴール判定の範囲をプロット
+        plt::plot(goal_circ_x,goal_circ_y,{{"color","green"},{"alpha","0.5"}});
 
+        //旗のプロット
         plt::fill<double>(
                 {this->lines.back().end.x(), this->lines.back().end.x() + 0.07, this->lines.back().end.x() + 0.07,this->lines.back().end.x()},
                 {this->lines.back().end.y() + 0.05, this->lines.back().end.y() + 0.05, this->lines.back().end.y() + 0.1,this->lines.back().end.y() + 0.1},
