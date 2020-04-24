@@ -100,6 +100,10 @@ public:
         return false;
     }
 
+    double getTime(){
+        return this->time;
+    }
+
 private:
     State getRobotState(Robot *robot) {
         return robot->state;

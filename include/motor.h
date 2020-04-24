@@ -4,7 +4,7 @@
 #include <cmath>
 
 class Motor{
-private:
+protected:
     //巻線抵抗
     const double resistance = 5.55;
     //インダクタンス
@@ -23,7 +23,7 @@ private:
     //車輪半径
     const double tire_radius = 0.05;
 
-private:
+protected:
     double interval;
     double duty;
     double current;
