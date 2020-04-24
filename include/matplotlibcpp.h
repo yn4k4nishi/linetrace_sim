@@ -15,6 +15,7 @@
 #ifndef WITHOUT_NUMPY
 #  define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #  include <numpy/arrayobject.h>
+#include <deque>
 
 #  ifdef WITH_OPENCV
 #    include <opencv2/opencv.hpp>
@@ -2105,7 +2106,7 @@ inline bool plot(const std::vector<double>& x, const std::vector<double>& y, con
     return plot<double,double>(x,y,format);
 }
 
-inline bool plot(const std::vector<double>& y, const std::string& format = "") {
+inline bool plot(std::vector<double> y, const std::string& format = "") {
     return plot<double>(y,format);
 }
 

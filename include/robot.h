@@ -4,6 +4,7 @@
 #include <vector>
 #include <cmath>
 #include <string>
+#include <deque>
 #include "matplotlibcpp.h"
 #include "noised_motor.h"
 #include "noised_sensor.h"
@@ -20,7 +21,7 @@ private:
 
     const std::string color = "black";
 
-    const int sensor_num = 4;
+    static const int sensor_num = 4;
     const double width = 0.1;
     //センサバーの位置(中心よりx前方，長さはy)
     const Position sensor_bar_pos = {0.05, 0.06};
@@ -41,7 +42,7 @@ public:
     }
 
 private:
-    void update_state(){
+    void updateState(){
         double speed_r = motor_r.getSpeed();
         double speed_l = motor_l.getSpeed();
 
@@ -54,7 +55,7 @@ private:
         return;
     }
 
-    void update_sensor(){
+    void updateSensor(){
         if(sensor_num < 2){
             return;
         }
@@ -73,7 +74,7 @@ private:
         return;
     }
 
-    void plot_machine(){
+    void plotMachine(){
         std::vector<double> x(6), y(6);
         for(int i = 0; i < 5; i++){
             x.at(i) = state.x + width * cos(state.theta + i * M_PI / 2.0) / 2.0;
@@ -85,7 +86,7 @@ private:
         return;
     }
 
-    void plot_sensor(){
+    void plotSensor(){
         std::vector<double> x(2), y(2);
         x.at(0) = state.x + sensor_bar_pos.x * cos(state.theta) - sensor_bar_pos.y / 2 * sin(state.theta);
         y.at(0) = state.y + sensor_bar_pos.x * sin(state.theta) + sensor_bar_pos.y / 2 * cos(state.theta);
@@ -99,8 +100,8 @@ public:
     void update(){
         motor_r.update();
         motor_l.update();
-        update_sensor();
-        update_state();
+        updateSensor();
+        updateState();
         return;
     }
 
@@ -126,13 +127,17 @@ public:
     }
 
     void plot(){
-        plot_machine();
-        plot_sensor();
+        plotMachine();
+        plotSensor();
         return;
     }
 
     double getInterval() const {
         return this->interval;
+    }
+
+    int getSensorNum()const {
+        return sensor_num;
     }
 };
 

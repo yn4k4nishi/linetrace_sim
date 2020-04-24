@@ -25,7 +25,7 @@ class World{
     double interval = 0.01; //[s]
 
     // パラメータ
-    const double GOAL_TOLERANCE = 0.01; //[m]
+    const double GOAL_TOLERANCE = 0.1; //[m]
 
 public:
     World():
@@ -67,6 +67,9 @@ public:
 
     void plot(){
         plt::clf();
+        plt::suptitle("time : " + std::to_string(time) + "[s]");
+
+        plt::subplot(1,2,1);
         plt::axis("equal");
 
         for (auto &l : this->lines) {
@@ -82,10 +85,17 @@ public:
         this->robot->plot();
         plotGoalFlag();
 
-        plt::text(-0.25, 1.1, std::to_string(time) + "[s]");
-
         plt::xlim(-0.2,1.2);
         plt::ylim(-0.2,1.2);
+
+        // センサ値のプロット
+        plt::subplot(1,2,2);
+//        const double time_window_width = 3.0; //[s]
+//        const int plot_data_size = time_window_width / interval; //[個]
+
+        auto data = this->robot->getSensorData();
+        plt::ylim(0,1);
+        plt::bar(data);
 
         plt::pause(interval);
     }

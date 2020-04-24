@@ -19,10 +19,10 @@ public:
     void steerRobot(){
         auto sensor_data = robot->getSensorData();
 
-        std::cout << sensor_data[0] << "\t";
-        std::cout << sensor_data[1] << "\t";
-        std::cout << sensor_data[2] << "\t";
-        std::cout << sensor_data[3] << std::endl;
+//        std::cout << sensor_data[0] << "\t";
+//        std::cout << sensor_data[1] << "\t";
+//        std::cout << sensor_data[2] << "\t";
+//        std::cout << sensor_data[3] << std::endl;
 
         if(sensor_data[0] > 0){
             robot->setDuty(0,0.5);
