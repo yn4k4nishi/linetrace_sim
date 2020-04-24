@@ -26,23 +26,26 @@ class World{
 
     // パラメータ
     const double GOAL_TOLERANCE = 0.1; //[m]
+    const double FIELD_SIZE = 1.0; //[m]
 
 public:
     World():
-            time(0.0){}
+            time(0.0){
+        plt::figure_size(1200,1200);
+    }
     ~World(){}
 
     void setLines(){
         // todo コースのファイル読み込み
         Line l1,l2,l3;
-        l1.start << 0,0;
+        l1.start << 0.1,0.1;
         l1.end << 0.4,0.2;
 
         l2.start = l1.end;
         l2.end << 0.5,0.8;
 
         l3.start = l2.end;
-        l3.end << 1,1;
+        l3.end << 0.9,0.9;
 
         this->lines.clear();
 
@@ -72,6 +75,12 @@ public:
         plt::subplot(1,2,1);
         plt::axis("equal");
 
+        // 範囲のプロット
+        plt::plot({0,FIELD_SIZE,FIELD_SIZE,0,0},
+                  {0,0,FIELD_SIZE,FIELD_SIZE,0},
+                  {{"alpha","0.6"},{"color","red"}});
+
+        //ラインのプロット
         for (auto &l : this->lines) {
             plt::plot(
                     std::vector<double>{l.start.x(),l.end.x()},
@@ -80,19 +89,17 @@ public:
                     );
         }
 
+        //軌跡のプロット
         plt::plot(this->trajectory_x,this->trajectory_y);
 
-        this->robot->plot();
         plotGoalFlag();
+        this->robot->plot();
 
-        plt::xlim(-0.2,1.2);
-        plt::ylim(-0.2,1.2);
+        plt::xlim(-0.2,FIELD_SIZE + 0.2);
+        plt::ylim(-0.2,FIELD_SIZE + 0.2);
 
         // センサ値のプロット
         plt::subplot(1,2,2);
-//        const double time_window_width = 3.0; //[s]
-//        const int plot_data_size = time_window_width / interval; //[個]
-
         auto data = this->robot->getSensorData();
         plt::ylim(0,1);
         plt::bar(data);
@@ -104,6 +111,13 @@ public:
         Eigen::Vector2d pos {this->getRobotState(robot).x, this->getRobotState(robot).y};
 
         if((this->lines.back().end - pos).norm() < GOAL_TOLERANCE){
+            return true;
+        }
+
+        if( 0.0 > getRobotState(robot).x || getRobotState(robot).x > FIELD_SIZE ){
+            return true;
+        }
+        if( 0.0 > getRobotState(robot).y || getRobotState(robot).y > FIELD_SIZE ){
             return true;
         }
 

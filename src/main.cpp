@@ -40,7 +40,7 @@ public:
  */
 int main(){
 
-    Robot robot(0.01,{0,0,M_PI_4});
+    Robot robot(0.01,{0.1,0.1,M_PI_4});
 
     Agent agent;
     agent.rideRobot(robot);
