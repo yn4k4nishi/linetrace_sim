@@ -6,7 +6,7 @@
 #include <string>
 #include "matplotlibcpp.h"
 #include "noised_motor.h"
-#include "sensor.h"
+#include "noised_sensor.h"
 #include "structs.h"
 #include "line.h"
 
@@ -29,7 +29,7 @@ private:
     double interval;
     State state;
     NoisedMotor motor_r, motor_l;
-    std::vector<Sensor> sensor;
+    std::vector<NoisedSensor> sensor;
 
 public:
     Robot(double interval = 0.01, State initial_state = {0.0, 0.0, 0.0}) :

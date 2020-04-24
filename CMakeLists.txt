@@ -18,7 +18,7 @@ add_executable(${PROJECT_NAME}
         include/timer.h
         include/world.h
         include/line.h
-        include/noised_motor.h)
+        include/noised_motor.h include/noised_sensor.h)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${PYTHON_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${PYTHON_LIBRARIES})
