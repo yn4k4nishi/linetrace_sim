@@ -41,7 +41,6 @@ public:
 int main(){
 
     Robot robot(0.01,{0,0,M_PI_4});
-//    robot.setDuty(0.2,0.1);
 
     Agent agent;
     agent.rideRobot(robot);

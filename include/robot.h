@@ -130,6 +130,10 @@ public:
         plot_sensor();
         return;
     }
+
+    double getInterval() const {
+        return this->interval;
+    }
 };
 
 #endif

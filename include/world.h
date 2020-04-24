@@ -21,10 +21,11 @@ class World{
     // プロット用のvector
     std::vector<double> trajectory_x,trajectory_y;
 
-    // パラメータ
-    const double GOAL_TOLERANCE = 0.01;// [m]
+    double time; //[s]
+    double interval = 0.01; //[s]
 
-    double time;
+    // パラメータ
+    const double GOAL_TOLERANCE = 0.01; //[m]
 
 public:
     World():
@@ -53,12 +54,14 @@ public:
     void setRobot(Robot &robot){
         this->robot = &robot;
         this->robot->setLines(this->lines);
+
+        this->interval = robot.getInterval();
     }
 
     void update(){
         this->trajectory_x.push_back(this->getRobotState(robot).x);
         this->trajectory_y.push_back(this->getRobotState(robot).y);
-        this->time += 0.01;
+        this->time += interval;
         this->robot->update();
     }
 
@@ -84,7 +87,7 @@ public:
         plt::xlim(-0.2,1.2);
         plt::ylim(-0.2,1.2);
 
-        plt::pause(0.01);
+        plt::pause(interval);
     }
 
     bool isFinished(){
