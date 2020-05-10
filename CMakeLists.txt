@@ -5,7 +5,6 @@ project(linetrace_sim)
 find_package(Python3 COMPONENTS Development NumPy)
 
 message("Python3_FOUND : ${Python3_FOUND}")
-message("Python3_ROOT_DIR : ${Python3_ROOT_DIR}")
 message("Python3_Development_FOUND : ${Python3_Development_FOUND}")
 message("Python3_INCLUDE_DIRS : ${Python3_INCLUDE_DIRS}")
 message("Python3_NumPy_INCLUDE_DIRS : ${Python3_NumPy_INCLUDE_DIRS}")
